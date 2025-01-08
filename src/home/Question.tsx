@@ -26,34 +26,36 @@ export function Question() {
 
   return (
     <div className="flex justify-center">
-      <Card className="w-[450px] ">
-        <CardHeader className="">
-          <CardTitle>
-            <h3>{currentQuestion.question}</h3>
-          </CardTitle>
-          <CardDescription>
-            <p>
-              Question {currentQuestionIndex + 1} of {questions.length}
-            </p>
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div>
-            {currentQuestion.options.map((option, index) => (
-              <Button
-                className="w-full mt-3"
-                key={index}
-                size={"lg"}
-                variant={option === currentAnswer ? "default" : "outline"}
-                onClick={() => handleAnswerChange(option)}
-              >
-                {option}
-              </Button>
-            ))}
-          </div>
-          <QuizControls />
-        </CardContent>
-      </Card>
+      {questions.length > 0 && (
+        <Card className="w-[450px] ">
+          <CardHeader className="">
+            <CardTitle>
+              <h3>{currentQuestion.question}</h3>
+            </CardTitle>
+            <CardDescription>
+              <p>
+                Question {currentQuestionIndex + 1} of {questions?.length}
+              </p>
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div>
+              {currentQuestion.options.map((option, index) => (
+                <Button
+                  className="w-full mt-3"
+                  key={index}
+                  size={"lg"}
+                  variant={option === currentAnswer ? "default" : "outline"}
+                  onClick={() => handleAnswerChange(option)}
+                >
+                  {option}
+                </Button>
+              ))}
+            </div>
+            <QuizControls />
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 }
